@@ -34,8 +34,16 @@ d,drop = 删除提交，丢弃提交记录
 #### 同步到远程仓库
 
 ```shell
-git push -f 
+git push -f # 强制推送，慎用
 #或
 git push --force
+```
+
+##### 3. 查看历史
+
+```shell
+--oneline # 参数，一行记录，最简显示
+git log # 本地记录
+git log origin/master #远程分支记录
 ```
 
