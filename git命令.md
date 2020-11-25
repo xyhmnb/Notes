@@ -76,3 +76,37 @@ git config --global -e #打开git基本配置并编辑
 # 也可以使用该命令直接在这里编辑配置，编辑多行设置
 ```
 
+##### 5.merge和rebase
+
+为什么要用git pull --rebase？
+
+```powershell
+git pull = git fetch + git merge FETCH_HEAD
+git pull --rebase = git fetch + git rebase FETCH_HEAD
+```
+
+现在有有两个分支，test和master提交如下：
+
+```shell
+       D---E test
+      /
+ A---B---C---F--- master
+```
+
+在master执行git merge test，会得到如下结果
+
+```shell
+       D--------E
+      /          \
+ A---B---C---F----G---   test, master
+```
+
+在master执行git rebase test，会得到如下结果
+
+```shell
+A---B---D---E---C‘---F‘---   test, master
+```
+
+merge操作会生成一个新的节点，之前的提交分开显示，
+
+而rebase操作不会生成新的节点，是将两个分支融合成一个线性的提交。（显示更好的提交树）
