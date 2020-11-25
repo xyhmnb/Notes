@@ -50,3 +50,29 @@ git log # 本地记录
 git log origin/master #远程分支记录
 ```
 
+##### 4. 设置简写（别名）
+
+```shell
+git config --global alias.st status #添加status别名，只能一行一行设置
+git config --global -e #打开git基本配置并编辑
+[user]
+        name = xieyuhao
+        email = xieyuhao@fscut.com
+[core]
+        autocrlf = true
+        quotepath = false
+[credential]
+        helper = store
+[gui]
+        encoding = utf-8
+[i18n "commit"]
+        encoding = utf-8
+[i18n]
+        logoutputencoding = utf-8
+[alias]
+        st = status
+        pl = pull
+        lg = "log --online"
+# 也可以使用该命令直接在这里编辑配置，编辑多行设置
+```
+
