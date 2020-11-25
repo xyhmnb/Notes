@@ -36,6 +36,8 @@ ci：ci配置，脚本文件等更新
 
 `subject`必填，简单说明，不超过50个字
 
+`body`选填，详细描述
+
 `footer`选填，用于关联issus，或BREAK CHANGE
 
 BREAKING CHANGE，必须是大写，表示引入了**破坏性API**，通常是一个大版本的改动，BREAKING CHANGE：之后必须提供描述，下面一个包含破坏性变更的提交示例
