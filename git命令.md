@@ -110,3 +110,22 @@ A---B---D---E---C‘---F‘---   test, master
 merge操作会生成一个新的节点，之前的提交分开显示，
 
 而rebase操作不会生成新的节点，是将两个分支融合成一个线性的提交。（显示更好的提交树）
+
+##### restore撤销
+
+当我们修改工作区的内容后，想要放弃修改，此时还未添加到暂存区，可以使用restore撤销
+
+```shell
+git status
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   package-lock.json
+# 红色modified，修改未添加到暂存区
+git restore package-lock.json
+# 或
+git restore . #批量撤销所有修改文件
+```
+
+
+
