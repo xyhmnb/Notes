@@ -1,12 +1,12 @@
 > 常用git 命令
 
-##### 1. 修改最后一次提交
+##### 修改最后一次提交
 ```shell
 # 可以修改最后一次提交message，不会新增commit记录
 git commit --amend
 ```
 
-##### 2. 合并多条提交
+##### 合并多条提交
 
 ```shell
 git reset --soft [commitID]
@@ -76,7 +76,7 @@ git config --global -e #打开git基本配置并编辑
 # 也可以使用该命令直接在这里编辑配置，编辑多行设置
 ```
 
-##### 5.merge和rebase
+##### merge和rebase
 
 为什么要用git pull --rebase？
 
@@ -127,5 +127,13 @@ git restore package-lock.json
 git restore . #批量撤销所有修改文件
 ```
 
+##### 单独合并commit
 
+从一个分支cherry-pick多个commit到其他分支
+
+```shell
+git cherry-pick <commit id> # 合并一个提交
+git cherry-pick (commit_id0,commit_idn] # 合并某个范围内commit
+git cherry-pick c5ec243b..c8e6cc92 # ...表示区间概念
+```
 
