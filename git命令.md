@@ -17,6 +17,7 @@ git reset --soft [commitID]
 ```shell
 git reset --soft HEAD~2 #合并最近两条提交，带 --soft 参数的区别在于把改动内容添加到暂存区 相当于执行了git add .
 git commit -m 'feat: add new feat' # 撤销commit记录后，将改动重新add，然后commit
+git reset --sofr HEAD^ #将commit最新的一条撤销，修改复原到暂存区
 ```
 
 **还有一种办法**
