@@ -1,14 +1,14 @@
 ### @EnableJpaAuditing审计功能
 
-##### Spring JPA 中，支持在字段或者方法上进行注解 @CreatedDate、@CreatedBy、@LastModifiedDate、@LastModifiedBy
+> Spring JPA 中，支持在字段或者方法上进行注解 @CreatedDate、@CreatedBy、@LastModifiedDate、@LastModifiedBy
 
-**@CreateDate**
+@CreateDate
 表示该字段为创建时间时间字段，在这个实体被 insert 的时候，会设置默认值
 
-**@CreatedBy**
+@CreatedBy
 表示该字段为创建人，在这个实体被insert的时候，会设置值。
 
-**@LastModifiedDate、@LastModifiedBy同理**。
+@LastModifiedDate、@LastModifiedBy同理
 
 #### 使用方法
 
@@ -76,7 +76,15 @@ public class UserAuditor implements AuditorAware<String> {
 }
 ```
 
+### @DynamicInsert和@DynamicUpdate（没验证过）
 
+@DynamicInsert：在动态生成insert对象时，如果这个字段的值是null就不会加入到insert语句当中，默认为true
+
+比如希望数据库插入日期或时间戳字段时，在对象字段为空的情况下，表字段能自动填写当前的sysdate
+
+@DynamicUpdate：在动态生成update对象时，如果这个字段的值是null就不会加入到update语句当中，默认为true
+
+比如只想更新某个属性，但是却把整个对象的属性都更新了，这并不是我们希望的结果，我们希望的结果是：我更改了哪些字段，只要更新我修改的字段就够了。
 
 #### @EntityScan和@EnableJpaRepositories
 
@@ -105,4 +113,49 @@ public class UserAuditor implements AuditorAware<String> {
 关于开启@EnableJpaRepositories扫描后，可以不使用@Repository注解就能实现注入，前提是继承自JpaRepository类的class。
 
 [参考文章](https://blog.csdn.net/andy_zhang2007/article/details/84064862)
+
+### 多表查询(自定义sql查询)
+
+1. 使用Select new+对象全类名  语法：
+
+```java
+@Query(select new com.xx.yy.PersonResult(p.id,p.name) from Person p)
+List<PersonResult> findPersonResult();
+```
+
+2. 使用Object[]数组来接收数据，然后自己转化
+
+```java
+@Query(select p.id,p.name from Person p)
+List<Object[]> findPersonResult();
+```
+
+3. 使用接口类接收
+
+```java
+@Query(select p.id,p.name from Person p)
+List<PersonResult> findPersonResutl();
+//PersonResult 是一个接口，里面写属性的get方法
+```
+
+### 建表关键字报错
+
+在使用jpa建表或字段时，如果遇到MySQL关键字则会报错。
+
+解决办法：
+
+1. 表名为关键字
+
+```java
+@Table(name="`groups`")
+// 或者
+@Table(name="[groups]")
+// 下面这种可能会有代码警告
+```
+
+2. 列名为关键字
+
+```java
+@Column(name="`from`")
+```
 
