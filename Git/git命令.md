@@ -1,5 +1,26 @@
 > 常用git 命令
 
+##### stash
+用来暂存当前修改内容(已经add，但没有commit)，不管是暂存还是恢复，都不会判断分支，所以需要自己注意是否需要切换分支。
+```shell
+# 当前修改内容暂存
+git stash 
+# 当前修改内容暂存，备注自己填
+git stash save "save message"
+git stash list：显示目前stash有哪些存储
+git stash show：显示做了哪些改动
+git stash show stash@{1}：显示第二个
+git stash show -p：显示第一个存储的改动
+git stash show stash@{1} -p：显示第二个存储的改动
+git stash apply：默认应用第一个存储，但不会从存储列表删除
+git stash apply stash@{1}：同上，应用第二个存储
+git stash pop：默认应用（恢复）第一个存储，并在缓存栈中删除
+git stash pop stash@{1}：应用第二个存储并删除
+git stash drop：默认丢弃第一个存储，也就是从列表中删除
+git stash drop stash@{1}：丢弃第二个存储
+git stash clear：删除所有缓存stash
+```
+
 ##### 修改最后一次提交
 ```shell
 # 可以修改最后一次提交message，不会新增commit记录
