@@ -98,6 +98,13 @@ git config --global -e #打开git基本配置并编辑
 # 也可以使用该命令直接在这里编辑配置，编辑多行设置
 ```
 
+##### checkout 
+切回到某一个commit
+git checkout commitId
+从当前状态切出一个分支
+git checkout -b fix_problem
+回到最新代码
+git checkout master
 ##### merge和rebase
 
 为什么要用git pull --rebase？
