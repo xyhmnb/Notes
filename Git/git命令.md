@@ -21,6 +21,9 @@ git stash drop stash@{1}：丢弃第二个存储
 git stash clear：删除所有缓存stash
 ```
 
+##### 本地拉取远程分支并新建且绑定
+git checkout --track origin/newsletter
+
 ##### 修改最后一次提交
 ```shell
 # 可以修改最后一次提交message，不会新增commit记录
